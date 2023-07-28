@@ -137,7 +137,7 @@ public:
             return false;
         }
         flinger_surface_ = flinger_surface_control_->getSurface();
-        // Set up our OpenGL ES context associated with the default display
+        // set up our OpenGL ES context associated with the default display
         display_ = eglGetDisplay(EGL_DEFAULT_DISPLAY);
         if (EGL_NO_DISPLAY == display_) {
             printf("failed to get egl display!");
@@ -150,7 +150,7 @@ public:
             return false;
         }
         static const EGLint config_attribs[] = {EGL_RED_SIZE, 8, EGL_GREEN_SIZE, 8, EGL_BLUE_SIZE, 8, EGL_DEPTH_SIZE, 0, EGL_NONE};
-        // Pick the default configuration without constraints (is this good enough?)
+
         EGLConfig egl_config = {0};
         EGLint numConfigs = -1;
         eglChooseConfig(display_, config_attribs, &egl_config, 1, &numConfigs);
@@ -164,9 +164,7 @@ public:
             printf("gelCreateWindowSurface failed!\n");
             return false;
         }
-        // Create the EGL context
-        // NOTE:  Our shader is (currently at least) written to require version 3, so this
-        // is required.
+
         const EGLint context_attribs[] = {EGL_CONTEXT_CLIENT_VERSION, 3, EGL_NONE};
         context_  = eglCreateContext(display_, egl_config, EGL_NO_CONTEXT, context_attribs);
         if (EGL_NO_CONTEXT == context_ ) {
