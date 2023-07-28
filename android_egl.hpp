@@ -132,7 +132,7 @@ public:
             std::swap(width, height);
         }
         flinger_surface_control_ = flinger_->createSurface(String8("Evs Display"), width, height, PIXEL_FORMAT_RGBX_8888, ISurfaceComposerClient::eOpaque);
-        if ((nullptr == flinger_surface_control_) || !ctx->flinger_surface_control_->isValid()) {
+        if ((nullptr == flinger_surface_control_) || !flinger_surface_control_->isValid()) {
             printf("failed to create SurfaceControl!\n");
             return false;
         }
@@ -160,7 +160,7 @@ public:
         }
         // Create the EGL render target surface
         surface_  = eglCreateWindowSurface(display_, egl_config, flinger_surface_.get(), nullptr);
-        if (EGL_NO_SURFACE == ctx->surface_ ) {
+        if (EGL_NO_SURFACE == surface_ ) {
             printf("gelCreateWindowSurface failed!\n");
             return false;
         }
